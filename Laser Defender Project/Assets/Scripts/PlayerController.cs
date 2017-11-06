@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 	public float padding = 1f;
 	public float laserSpeed = 10f;
 	public float fireRate = 0.2f;
+	public float health = 300f;
 
 	// Use this for initialization
 	void Start()
@@ -59,10 +60,25 @@ public class PlayerController : MonoBehaviour
 
 	void FireLaser()
 	{
-		GameObject laser = Instantiate(laserShot, new Vector3(transform.position.x, transform.position.y, 0f), Quaternion.identity, transform.parent);
+		GameObject laser = Instantiate(laserShot, new Vector3(transform.position.x, transform.position.y + 1f, 0f), Quaternion.identity, transform.parent);
 
 		laser.GetComponent<Rigidbody2D>().velocity = new Vector3(0, laserSpeed, 0);
 	}
 
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		LaserFire laser = collision.gameObject.GetComponent<LaserFire>();
 
+		if (laser)
+		{
+			laser.Hit();
+			health -= laser.GetDamage();
+			Debug.Log("Player shot!!!");
+
+			if (health <= 0)
+			{
+				Destroy(gameObject);
+			}
+		}
+	}
 }

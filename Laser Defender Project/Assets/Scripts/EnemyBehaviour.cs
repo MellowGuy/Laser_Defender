@@ -7,10 +7,15 @@ public class EnemyBehaviour : MonoBehaviour
 	public float health = 200f;
 	public float laserSpeed = 10f;
 	public GameObject laserShot;
+	public float shotsPerSecond = 0.5f;
 
 	private void Update()
 	{
-		FireLaser();
+		float probability = Time.deltaTime * shotsPerSecond;
+		if (Random.value < probability)
+		{
+			FireLaser();
+		}
 	}
 
 	void FireLaser()
