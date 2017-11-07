@@ -238,6 +238,7 @@ MonoBehaviour:
   speed: 5
   xMin: -3.5
   xMax: 3.5
+  spawnDelay: 5
 --- !u!114 &114145916509226722
 MonoBehaviour:
   m_ObjectHideFlags: 1
