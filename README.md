@@ -1,10 +1,4 @@
 # Laser_Defender
-Laser defender clone following online tutorial
-A game by Ty & Sam
-\
-
-
-
-
+Laser defender clone following online tutorial - Completed
 =====================================================================
 Testing github
