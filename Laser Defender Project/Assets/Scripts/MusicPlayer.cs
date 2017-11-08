@@ -9,7 +9,8 @@ public class MusicPlayer : MonoBehaviour
 	public AudioClip endClip;
 
 	private AudioSource music;
-
+	
+	//Makes MusicPlayer persist between scenes. Checks if it already exists.
 	void Start()
 	{
 		if (instance != null && instance != this)
@@ -28,6 +29,7 @@ public class MusicPlayer : MonoBehaviour
 		}
 	}
 
+	//Decides which AudioClip to play depending on level loaded. 
 	private void OnLevelWasLoaded(int level)
 	{
 		Debug.Log("MusicPlayer: Level called: " + level.ToString());

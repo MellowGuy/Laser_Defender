@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 	public float fireRate = 0.2f;
 	public float health = 300f;
 
-	// Use this for initialization
+	// Sets boundaries to player object. 
 	void Start()
 	{
 		float disance = transform.position.z - Camera.main.transform.position.z;
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 			CancelInvoke("FireLaser");
 		}
 
-		//if-else if statements to get either left or right arror keys to move position left or right. 
+		//if-elseif statements to get either left or right arror keys to move position left or right. 
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
 			transform.position += Vector3.left * xSpeed * Time.deltaTime;
@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
 		transform.position = new Vector3(newX, transform.position.y, transform.position.z);
 	}
 
+	//Instantiates laser object and gives it velocity, plays sound effect.
 	void FireLaser()
 	{
 		GameObject laser = Instantiate(laserShot, new Vector3(transform.position.x, transform.position.y, 0f), Quaternion.identity, transform.parent);
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
 		AudioSource.PlayClipAtPoint(laserSound, transform.position);
 	}
 
+	//Destroys player object, plays sound and goes to Win Screen.
 	void PlayerDeath()
 	{
 		Destroy(gameObject);
@@ -75,7 +77,7 @@ public class PlayerController : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		LaserFire laser = collision.gameObject.GetComponent<LaserFire>();
-
+		//Checks if collider is LaserFire object to take damage, if less than heath, destroys.
 		if (laser)
 		{
 			laser.Hit();

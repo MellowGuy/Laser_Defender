@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+	//Loads level based on string passed in.
 	public void LoadLevel(string name)
 	{
 		SceneManager.LoadScene(name);
@@ -11,6 +12,7 @@ public class LevelManager : MonoBehaviour
 		//Application.LoadLevel(name);
 	}
 
+	//Quits application
 	public void QuitRequest()
 	{
 		Debug.Log("Quit requested");

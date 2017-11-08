@@ -92,20 +92,19 @@ public class EnemySpawner : MonoBehaviour
 		}
 	}
 
-
+	//Checks if all child memebers of position in EnemySpawer are empty or not.
 	public bool AllMembersDead()
 	{
 		foreach (Transform childPositionGameObject in transform)
 		{
 			if (childPositionGameObject.childCount > 0)
-			{
 				return false;
-			}
 		}
 
 		return true;
 	}
 
+	//Puts wire cube on enemy spawner
 	public void OnDrawGizmos()
 	{
 		Gizmos.DrawWireCube(transform.position, new Vector3(width, height));
@@ -113,7 +112,7 @@ public class EnemySpawner : MonoBehaviour
 
 
 
-	/*
+	/*//Unused code was for spawning enemy objects.
 public void SpawnAllEnemies()
 {
 	foreach (Transform item in transform)

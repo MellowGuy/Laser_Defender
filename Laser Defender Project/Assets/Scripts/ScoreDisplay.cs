@@ -4,17 +4,11 @@ using UnityEngine.UI;
 public class ScoreDisplay : MonoBehaviour
 {
 
-	// Use this for initialization
+	// Displays "Final Score: " on text component. Pulls static score property from ScoreKeeper.
 	void Start()
 	{
 		Text myText = GetComponent<Text>();
 		myText.text = "Final Score: " + ScoreKeeper.score.ToString();
 		ScoreKeeper.Reset();
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
 	}
 }
