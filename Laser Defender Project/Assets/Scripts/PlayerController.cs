@@ -3,6 +3,8 @@
 public class PlayerController : MonoBehaviour
 {
 	public GameObject laserShot;
+	public AudioClip laserSound;
+	public AudioClip deathSound;
 	public float xSpeed = 5f;
 	public float ySpeed = 5f;
 	public float xMin;
@@ -57,11 +59,19 @@ public class PlayerController : MonoBehaviour
 
 	void FireLaser()
 	{
-		GameObject laser = Instantiate(laserShot, new Vector3(transform.position.x, transform.position.y + 1f, 0f), Quaternion.identity, transform.parent);
-
+		GameObject laser = Instantiate(laserShot, new Vector3(transform.position.x, transform.position.y, 0f), Quaternion.identity, transform.parent);
 		laser.GetComponent<Rigidbody2D>().velocity = new Vector3(0, laserSpeed, 0);
+		AudioSource.PlayClipAtPoint(laserSound, transform.position);
 	}
 
+	void PlayerDeath()
+	{
+		Destroy(gameObject);
+		AudioSource.PlayClipAtPoint(deathSound, transform.position);
+		GameObject.Find("LevelManager").GetComponent<LevelManager>().LoadLevel("Win Screen");
+	}
+
+	//Collisions
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		LaserFire laser = collision.gameObject.GetComponent<LaserFire>();
@@ -74,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
 			if (health <= 0)
 			{
-				Destroy(gameObject);
+				PlayerDeath();
 			}
 		}
 	}

@@ -3,14 +3,14 @@ using UnityEngine.UI;
 
 public class ScoreKeeper : MonoBehaviour
 {
-	public int score = 0;
+	public static int score = 0;
 	private Text myText;
 
 	//Initializes the score
 	private void Start()
 	{
 		myText = GetComponent<Text>();
-		Score(0);
+		Reset();
 	}
 
 	//add to score function
@@ -20,9 +20,9 @@ public class ScoreKeeper : MonoBehaviour
 		myText.text = "Game Score: " + score.ToString();	
 	}
 
-	////not currently used
-	//public void Reset()
-	//{
-	//	score = 0;
-	//}
+	//sets score to 0
+	public static void Reset()
+	{
+		score = 0;
+	}
 }
